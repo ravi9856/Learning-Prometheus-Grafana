@@ -1,0 +1,17 @@
+# Sample Prometheus config
+# This assumes that your Prometheus instance can access this application on localhost:8080
+
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+scrape_configs:
+  - job_name: 'spring boot scrape'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['host.docker.internal:8080'] # Prometheus is running inside Docker, so can't access localhost directly, instead host.docker.internal should be used.
+
+# To run the docker container
+# docker run -p 9090:9090 -v C:\Code\Learning-Prometheus-Grafana\prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus

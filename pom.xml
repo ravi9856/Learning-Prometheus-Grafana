@@ -37,7 +37,9 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<!--Adding below to add prometheus along with micrometer-->
+		<!--Adding below to add prometheus along with micrometer,
+		This allows the metrics collected by Micrometer to exposed in a
+		format that will be understood by Prometheus-->
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
