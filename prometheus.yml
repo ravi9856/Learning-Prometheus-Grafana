@@ -13,5 +13,7 @@ scrape_configs:
     static_configs:
       - targets: ['host.docker.internal:8080'] # Prometheus is running inside Docker, so can't access localhost directly, instead host.docker.internal should be used.
 
+# Prometheus URL: http://localhost:8080/actuator/prometheus
 # To run the docker container
 # docker run -p 9090:9090 -v C:\Code\Learning-Prometheus-Grafana\prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+# Prometheus running in Docker: http://localhost:9090/
