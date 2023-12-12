@@ -25,6 +25,10 @@ public class BasicRestController {
     public ResponseEntity<?> helloWorld(){
         log.info("Hello World!!");
         log.info("Calling Add fn: " + add(5,3));
+        log.error("Test Error");
+        log.error("Test Error2");
+        log.debug("Test Debug");
+        log.warn("Test Warn");
         return new ResponseEntity<>("Hello World!!", HttpStatus.OK);
     }
 
