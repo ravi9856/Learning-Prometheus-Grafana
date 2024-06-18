@@ -1,7 +1,10 @@
 package com.learning.LearningSpringboot.Controllers;
 
 import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,12 +19,22 @@ import java.util.concurrent.ThreadLocalRandom;
 @Slf4j
 public class BasicRestController {
 
+//    Metrics Available at http://localhost:8080/actuator/prometheus
+
     @GetMapping("/hello")
     @Timed(value = "greeting.time", description = "Time taken to return greeting")
     /*
     If you don’t see your custom metric, make sure that you have triggered this function
     at least once. The metric won’t appear until the timer has recorded at least once.
      */
+
+    public final Counter testCounter; //Prometheus Counter
+
+    @Autowired
+    public BasicRestController(MeterRegistry registry) {
+        testCounter = registry.counter("testCounter"); // Registering the counter variable in Prometheus
+    }
+
     public ResponseEntity<?> helloWorld(){
         log.info("Hello World!!");
         log.info("Calling Add fn: " + add(5,3));
@@ -29,6 +42,7 @@ public class BasicRestController {
         log.error("Test Error2");
         log.debug("Test Debug");
         log.warn("Test Warn");
+        testCounter.increment(); // Incrementing the counter
         return new ResponseEntity<>("Hello World!!", HttpStatus.OK);
     }
 
