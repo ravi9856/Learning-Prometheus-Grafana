@@ -21,7 +21,6 @@ public class BasicRestController {
 
 //    Metrics Available at http://localhost:8080/actuator/prometheus
 
-
     /*
     If you don’t see your custom metric, make sure that you have triggered this function
     at least once. The metric won’t appear until the timer has recorded at least once.
