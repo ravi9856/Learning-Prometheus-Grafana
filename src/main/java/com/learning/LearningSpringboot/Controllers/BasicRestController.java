@@ -27,7 +27,8 @@ public class BasicRestController {
      */
 
     public final Counter testCounter; //Prometheus Counter
-
+//    Other Types Counters, gauges, histograms, and summaries
+//    Gauge can go down, counter can go only up
 
     @Autowired
     public BasicRestController(MeterRegistry registry) {
